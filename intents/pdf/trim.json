@@ -1,0 +1,6 @@
+{
+    "name": "trim_pdf",
+    "keywords": ["trim", "cut", "extract"],
+    "file_type":"pdf",
+    "required":["input_file", "range", "output_file"]
+}

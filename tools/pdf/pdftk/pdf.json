@@ -1,0 +1,8 @@
+{
+    "tool": "pdftk",
+    "intents" : {
+        "trim_pdf" : {
+            "template" : "pdftk {input_file} cat {range} output {output_file}"
+        }
+    }
+}
