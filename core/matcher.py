@@ -6,7 +6,7 @@ INTENT_DIR = "intents"
 def load_intents():
     intents = []
 
-    for root, _, files in os.walk(INTENTS_DIR):
+    for root, _, files in os.walk(INTENT_DIR):
         for file in files:
             if(file.endswith(".json")) :
                 path = os.path.join(root, file)
@@ -31,18 +31,18 @@ def score_intent(text, keywords) :
 def match_intent(user_input):
     text = normalize(user_input)
     intents = load_intents()
-    best intent = None
+    best_intent = None
     best_score = 0
 
-    for (intent in intents) :
+    for intent in intents :
         keywords = intent.get("keywords", [])
         score = score_intent(text, keywords)
 
-        if score > best_Score :
+        if score > best_score :
             best_score = score
-            best_intent = intent["name"]
+            best_intent = intent
 
-    if best_intent == 0:
+    if best_intent is None:
         raise Exception("No intent matched")
 
     return best_intent

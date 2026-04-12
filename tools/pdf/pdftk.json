@@ -1,0 +1,86 @@
+{
+  "tool": "pdftk",
+  "intents": {
+    
+    "merge_pdf": {
+      "template": "pdftk {input_files} cat output {output_file}"
+    },
+
+    "trim_pdf": {
+      "template": "pdftk {input_file} cat {range} output {output_file}"
+    },
+
+    "reverse_pdf": {
+      "template": "pdftk {input_file} cat {range} output {output_file}"
+    },
+
+    "rotate_pdf": {
+      "template": "pdftk {input_file} cat {range}{rotation} output {output_file}"
+    },
+
+    "split_pdf": {
+      "template": "pdftk {input_file} burst output {output_pattern}"
+    },
+
+    "decrypt_pdf": {
+      "template": "pdftk {input_file} input_pw {password} output {output_file}"
+    },
+
+    "encrypt_pdf": {
+      "template": "pdftk {input_file} output {output_file} owner_pw {owner_password} user_pw {user_password}"
+    },
+
+    "compress_pdf": {
+      "template": "pdftk {input_file} output {output_file} compress"
+    },
+
+    "uncompress_pdf": {
+      "template": "pdftk {input_file} output {output_file} uncompress"
+    },
+
+    "add_background": {
+      "template": "pdftk {input_file} background {background_file} output {output_file}"
+    },
+
+    "add_stamp": {
+      "template": "pdftk {input_file} stamp {stamp_file} output {output_file}"
+    },
+
+    "multi_background": {
+      "template": "pdftk {input_file} multibackground {background_file} output {output_file}"
+    },
+
+    "multi_stamp": {
+      "template": "pdftk {input_file} multistamp {stamp_file} output {output_file}"
+    },
+
+    "fill_form": {
+      "template": "pdftk {input_file} fill_form {data_file} output {output_file}"
+    },
+
+    "generate_fdf": {
+      "template": "pdftk {input_file} generate_fdf output {output_file}"
+    },
+
+    "dump_data": {
+      "template": "pdftk {input_file} dump_data output {output_file}"
+    },
+
+    "dump_data_utf8": {
+      "template": "pdftk {input_file} dump_data_utf8 output {output_file}"
+    },
+
+    "attach_files": {
+      "template": "pdftk {input_file} attach_files {attachments} output {output_file}"
+    },
+
+    "unpack_files": {
+      "template": "pdftk {input_file} unpack_files output {output_dir}"
+    },
+
+    "rotate_specific": {
+      "template": "pdftk {input_file} rotate {range}{rotation} output {output_file}"
+    }
+
+  }
+}

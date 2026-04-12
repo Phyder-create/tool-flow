@@ -2,5 +2,9 @@
     "name": "trim_pdf",
     "keywords": ["trim", "cut", "extract"],
     "file_type":"pdf",
-    "required":["input_file", "range", "output_file"]
+    "parameters": {
+        "input_file": {"type": "file", "default" : "input.pdf"},
+        "output_file": {"type": "file", "default": "output.pdf"},
+        "range": {"type": "range", "deafult" : "start-end"}
+    }
 }

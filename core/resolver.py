@@ -24,7 +24,7 @@ def load_tools(domain):
 
 def load_priority():
     if not os.path.exists(CONFIG_PATH):
-        retutn []
+        return []
 
     with open(CONFIG_PATH, "r") as f:
         data = json.load(f)

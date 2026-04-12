@@ -7,7 +7,7 @@ from core.builder import build_command
 def main() :
     text = input(">> ")
     intent = match_intent(text)
-    params = parse(text)
+    params = parse(text, intent)
     tool = resolve_tool(intent)
     command = build_command(intent, params, tool)
     print(command)
