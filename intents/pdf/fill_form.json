@@ -1,0 +1,10 @@
+{
+  "name": "fill_form",
+  "keywords": ["fill form"],
+  "file_type": "pdf",
+  "parameters": {
+    "input_file": {"type": "file", "default" : "input.pdf"},
+    "data_file": {"type": "file", "default" : "data.pdf"},
+    "output_file": {"type": "file", "default": "filled.pdf"}
+  }
+}

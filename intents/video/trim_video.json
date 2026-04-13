@@ -1,0 +1,11 @@
+{
+  "name": "trim_video",
+  "keywords": ["trim video", "cut video", "trim", ".mkv", ".mp4"],
+  "file_type": "video",
+  "parameters": {
+    "input_file": {"type": "file"},
+    "start": {"type": "time", "default": "00:00:00"},
+    "end": {"type": "time", "default": "00:00:10"},
+    "output_file": {"type": "file", "default": "trimmed.mp4"}
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "add_audio",
+  "keywords": ["add audio", "replace audio", ".mp3", ".wav"],
+  "file_type": "video",
+  "parameters": {
+    "input_file": {"type": "file"},
+    "audio_file": {"type": "file"},
+    "output_file": {"type": "file", "default": "output.mp4"}
+  }
+}

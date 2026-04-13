@@ -1,0 +1,11 @@
+{
+  "name": "create_gif",
+  "keywords": ["create gif", "video to gif", ".gif",".mp4", ".mkv"],
+  "file_type": "video",
+  "parameters": {
+    "input_file": {"type": "file"},
+    "fps": {"type": "number", "default": 10},
+    "width": {"type": "resolution", "default": 480},
+    "output_file": {"type": "file", "default": "output.gif"}
+  }
+}

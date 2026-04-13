@@ -1,0 +1,10 @@
+{
+  "name": "add_background",
+  "keywords": ["background", "watermark background"],
+  "file_type": "pdf",
+  "parameters": {
+    "input_file": {"type": "file", "default" : "input.pdf"},
+    "background_file": {"type": "file", "default" : "background.pdf"},
+    "output_file": {"type": "file", "default": "background.pdf"}
+  }
+}

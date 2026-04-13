@@ -1,0 +1,9 @@
+{
+  "name": "split_pdf",
+  "keywords": ["split", "burst pages"],
+  "file_type": "pdf",
+  "parameters": {
+    "input_file": {"type": "file", "default" : "input.pdf"},
+    "output_pattern": {"type": "string", "default": "page_%02d.pdf"}
+  }
+}

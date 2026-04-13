@@ -1,0 +1,10 @@
+{
+  "name": "decrypt_pdf",
+  "keywords": ["decrypt", "remove password"],
+  "file_type": "pdf",
+  "parameters": {
+    "input_file": {"type": "file", "default" : "input.pdf"},
+    "password": {"type": "string", "default": ""},
+    "output_file": {"type": "file", "default": "decrypted.pdf"}
+  }
+}

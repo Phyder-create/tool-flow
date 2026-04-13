@@ -1,0 +1,9 @@
+{
+  "name": "mute_video",
+  "keywords": ["mute video", "remove audio", ".mkv", ".mp4"],
+  "file_type": "video",
+  "parameters": {
+    "input_file": {"type": "file"},
+    "output_file": {"type": "file", "default": "muted.mp4"}
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "encrypt_pdf",
+  "keywords": ["encrypt", "protect pdf"],
+  "file_type": "pdf",
+  "parameters": {
+    "input_file": {"type": "file", "default" : "input.pdf"},
+    "owner_password": {"type": "string", "default": "owner123"},
+    "user_password": {"type": "string", "default": "user123"},
+    "output_file": {"type": "file", "default": "encrypted.pdf"}
+  }
+}

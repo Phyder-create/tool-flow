@@ -1,0 +1,9 @@
+{
+  "name": "extract_frames",
+  "keywords": ["extract frames", "frames from video", ".mp4", ".mkv"],
+  "file_type": "video",
+  "parameters": {
+    "input_file": {"type": "file"},
+    "output_pattern": {"type": "string", "default": "frame_%03d.png"}
+  }
+}

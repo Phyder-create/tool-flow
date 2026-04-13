@@ -1,0 +1,58 @@
+{
+  "tool": "ffmpeg",
+  "intents": {
+
+    "extract_audio": {
+      "template": "ffmpeg -i {input_file} -q:a 0 -map a {output_file}"
+    },
+
+    "convert_video": {
+      "template": "ffmpeg -i {input_file} {output_file}"
+    },
+
+    "convert_audio": {
+      "template": "ffmpeg -i {input_file} {output_file}"
+    },
+
+    "trim_video": {
+      "template": "ffmpeg -i {input_file} -ss {start} -to {end} -c copy {output_file}"
+    },
+
+    "trim_audio": {
+      "template": "ffmpeg -i {input_file} -ss {start} -to {end} -c copy {output_file}"
+    },
+
+    "compress_video": {
+      "template": "ffmpeg -i {input_file} -vcodec libx264 -crf {crf} {output_file}"
+    },
+
+    "resize_video": {
+      "template": "ffmpeg -i {input_file} -vf scale={width}:{height} {output_file}"
+    },
+
+    "change_fps": {
+      "template": "ffmpeg -i {input_file} -filter:v fps={fps} {output_file}"
+    },
+
+    "mute_video": {
+      "template": "ffmpeg -i {input_file} -an {output_file}"
+    },
+
+    "add_audio": {
+      "template": "ffmpeg -i {input_file} -i {audio_file} -c:v copy -c:a aac {output_file}"
+    },
+
+    "extract_frames": {
+      "template": "ffmpeg -i {input_file} {output_pattern}"
+    },
+
+    "create_gif": {
+      "template": "ffmpeg -i {input_file} -vf fps={fps},scale={width}:-1 {output_file}"
+    },
+
+    "rotate_video": {
+      "template": "ffmpeg -i {input_file} -vf \"transpose={rotation}\" {output_file}"
+    }
+
+  }
+}

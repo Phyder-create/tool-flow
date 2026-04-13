@@ -1,0 +1,15 @@
+{
+  "name": "rotate_pdf",
+  "keywords": ["rotate"],
+  "file_type": "pdf",
+  "parameters": {
+    "input_file": {"type": "file", "default" : "input.pdf"},
+    "range": {"type": "range", "default": "1-end"},
+    "rotation": {
+      "type": "choice",
+      "choices": ["north", "south", "east", "west", "left", "right"],
+      "default": "east"
+    },
+    "output_file": {"type": "file", "default": "rotated.pdf"}
+  }
+}

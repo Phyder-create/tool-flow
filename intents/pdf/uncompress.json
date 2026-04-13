@@ -1,0 +1,9 @@
+{
+  "name": "uncompress_pdf",
+  "keywords": ["uncompress", "decompress"],
+  "file_type": "pdf",
+  "parameters": {
+    "input_file": {"type": "file", "default" : "input.pdf"},
+    "output_file": {"type": "file", "default": "uncompressed.pdf"}
+  }
+}

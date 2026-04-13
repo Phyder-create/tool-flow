@@ -1,0 +1,10 @@
+{
+  "name": "compress_video",
+  "keywords": ["compress video", "reduce video size", ".mp4", ".mkv"],
+  "file_type": "video",
+  "parameters": {
+    "input_file": {"type": "file"},
+    "crf": {"type": "number", "default": 23},
+    "output_file": {"type": "file", "default": "compressed.mp4"}
+  }
+}

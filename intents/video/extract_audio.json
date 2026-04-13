@@ -1,0 +1,9 @@
+{
+  "name": "extract_audio",
+  "keywords": ["extract audio", "audio from video", "get audio", ".mp3", ".wav"],
+  "file_type": "video",
+  "parameters": {
+    "input_file": {"type": "file"},
+    "output_file": {"type": "file", "default": "audio.mp3"}
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "rotate_video",
+  "keywords": ["rotate video", ".mkv", ".mp4"],
+  "file_type": "video",
+  "parameters": {
+    "input_file": {"type": "file"},
+    "rotation": {
+      "type": "choice",
+      "choices": ["left", "right"],
+      "default": "right"
+    },
+    "output_file": {"type": "file", "default": "rotated.mp4"}
+  }
+}

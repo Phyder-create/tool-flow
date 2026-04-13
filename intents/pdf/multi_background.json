@@ -1,0 +1,10 @@
+{
+  "name": "multi_background",
+  "keywords": ["multi background"],
+  "file_type": "pdf",
+  "parameters": {
+    "input_file": {"type": "file","default" : "input.pdf"},
+    "background_file": {"type": "file", "default" : "background.pdf"},
+    "output_file": {"type": "file", "default": "multi_background.pdf"}
+  }
+}

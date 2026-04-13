@@ -1,0 +1,9 @@
+{
+  "name": "unpack_files",
+  "keywords": ["extract attachments", "unpack files"],
+  "file_type": "pdf",
+  "parameters": {
+    "input_file": {"type": "file"}, "default" : "input.pdf",
+    "output_dir": {"type": "string", "default": "./"}
+  }
+}
