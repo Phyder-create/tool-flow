@@ -1,6 +1,6 @@
 {
   "name": "extract_frames",
-  "keywords": ["extract frames", "frames from video", ".mp4", ".mkv"],
+  "keywords": ["extract frames", "save frames", "convert video to images", "extract pictures"],
   "file_type": "video",
   "parameters": {
     "input_file": {"type": "file"},

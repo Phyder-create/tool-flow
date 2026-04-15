@@ -1,0 +1,9 @@
+{
+  "name": "convert_to_jpg",
+  "keywords": ["to jpg", "into jpg", "as jpg", "to jpeg"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file" , "default": "input.png"},
+    "output_file": { "type": "file", "default": "output" }
+  }
+}

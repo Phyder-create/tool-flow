@@ -3,8 +3,14 @@ import os
 
 TOOLS_DIR = "tools"
 CONFIG_PATH = "config/settings.json"
+TOOLS_CACHE = {}
+PRIORITY_CACHE = None
 
 def load_tools(domain):
+    if domain in TOOLS_CACHE:
+        return TOOLS_CACHE[domain]
+
+    
     tools = {}
     domain_path = os.path.join(TOOLS_DIR, domain)
 
@@ -19,17 +25,25 @@ def load_tools(domain):
                 tool_name = data["tool"]
                 tools[tool_name] = data["intents"]
 
+    TOOLS_CACHE[domain] = tools
     return tools
 
 
 def load_priority():
+    global PRIORITY_CACHE
+
+    if PRIORITY_CACHE is not None:
+        return PRIORITY_CACHE
+
     if not os.path.exists(CONFIG_PATH):
         return []
 
     with open(CONFIG_PATH, "r") as f:
         data = json.load(f)
 
-    return data.get("tool_priority", [])
+    PRIORITY_CACHE = data.get("tool_priority", [])
+
+    return PRIORITY_CACHE
 
 
 def resolve_tool(intent_data):

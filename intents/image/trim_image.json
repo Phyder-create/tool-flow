@@ -1,0 +1,9 @@
+{
+  "name": "trim_image",
+  "keywords": ["trim", "remove empty space", "remove borders", "auto crop"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.png" },
+    "output_file": { "type": "file", "default": "trimmed.png" }
+  }
+}

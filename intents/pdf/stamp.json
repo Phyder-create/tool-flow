@@ -1,6 +1,6 @@
 {
   "name": "add_stamp",
-  "keywords": ["stamp", "overlay"],
+  "keywords": ["stamp", "overlay pdf", "on top"],
   "file_type": "pdf",
   "parameters": {
     "input_file": {"type": "file", "default" : "input.pdf"},

@@ -1,6 +1,6 @@
 {
   "name": "trim_video",
-  "keywords": ["trim video", "cut video", "trim", ".mkv", ".mp4"],
+  "keywords": ["trim video", "cut video", "clip video", "shorten video", "from"],
   "file_type": "video",
   "parameters": {
     "input_file": {"type": "file"},

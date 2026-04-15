@@ -1,0 +1,16 @@
+{
+  "name": "add_text_overlay",
+  "keywords": ["text", "write", "overlay text", "add words", "caption"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default" :"input.png" },
+    "text": { "type": "quoted_string", "default": "quoted" },
+    "font_size": { "type": "number", "default": 36 },
+    "gravity": { 
+      "type": "string", 
+      "choices": ["top left", "top", "top right", "left", "center", "middle", "right", "bottom left", "bottom", "bottom right"],
+      "default": "center"
+    },
+    "output_file": { "type": "file", "default": "text_image.png" }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "trim_audio",
-  "keywords": ["trim audio", "cut audio", ".mp3", ".wav"],
+  "keywords": ["trim audio", "cut audio", "clip audio", "shorten audio"],
   "file_type": "video",
   "parameters": {
     "input_file": {"type": "file"},

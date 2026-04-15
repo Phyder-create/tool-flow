@@ -1,6 +1,6 @@
 {
   "name": "unpack_files",
-  "keywords": ["extract attachments", "unpack files"],
+  "keywords": ["unpack", "extract attachments", "get files out"],
   "file_type": "pdf",
   "parameters": {
     "input_file": {"type": "file"}, "default" : "input.pdf",

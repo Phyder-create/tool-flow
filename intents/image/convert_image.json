@@ -1,0 +1,9 @@
+{
+  "name": "convert_image",
+  "keywords": ["convert", "change format", "turn into"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.png" },
+    "output_file": { "type": "file", "default": "output.jpg" }
+  }
+}

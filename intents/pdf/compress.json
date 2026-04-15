@@ -1,6 +1,6 @@
 {
   "name": "compress_pdf",
-  "keywords": ["compress", "reduce size"],
+  "keywords": ["compress", "reduce size", "make smaller"],
   "file_type": "pdf",
   "parameters": {
     "input_file": {"type": "file", "default" : "input.pdf"},

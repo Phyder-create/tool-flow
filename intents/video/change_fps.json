@@ -1,6 +1,6 @@
 {
   "name": "change_fps",
-  "keywords": ["change fps", "set fps", ".mp4", ".mkv"],
+  "keywords": ["fps", "framerate", "frames per second", "change frame rate"],
   "file_type": "video",
   "parameters": {
     "input_file": {"type": "file"},

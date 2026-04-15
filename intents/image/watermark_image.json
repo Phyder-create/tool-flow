@@ -1,0 +1,15 @@
+{
+  "name": "watermark_image",
+  "keywords": ["watermark", "overlay image", "stamp", "logo on top"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.png" },
+    "watermark_file": { "type": "file", "default": "watermark.png" },
+    "gravity": { 
+      "type": "string", 
+      "choices": ["top left", "top", "top right", "left", "center", "middle", "right", "bottom left", "bottom", "bottom right"],
+      "default": "bottom right"
+    },
+    "output_file": { "type": "file", "default": "watermarked.png" }
+  }
+}

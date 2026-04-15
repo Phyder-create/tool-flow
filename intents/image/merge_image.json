@@ -1,0 +1,8 @@
+{
+  "name": "merge_images",
+  "keywords": ["merge", "combine", "stitch", "append", "collage"],  "file_type": "image",
+  "parameters": {
+    "input_files": { "type": "files", "default": "a.png b.png" },
+    "output_file": { "type": "file", "default": "merged.png" }
+  }
+}

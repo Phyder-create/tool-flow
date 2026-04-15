@@ -1,6 +1,6 @@
 {
   "name": "fill_form",
-  "keywords": ["fill form"],
+  "keywords": ["fill form", "populate form", "inject data"],
   "file_type": "pdf",
   "parameters": {
     "input_file": {"type": "file", "default" : "input.pdf"},

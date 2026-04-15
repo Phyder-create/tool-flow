@@ -1,0 +1,10 @@
+{
+  "name": "compress_image",
+  "keywords": ["compress", "reduce size", "quality", "optimize"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default" : "input.png"},
+    "quality": { "type": "number", "default": 75 },
+    "output_file": { "type": "file", "default": "compressed.jpg" }
+  }
+}

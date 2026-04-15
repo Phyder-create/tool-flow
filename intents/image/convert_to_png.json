@@ -1,0 +1,9 @@
+{
+  "name": "convert_to_png",
+  "keywords": ["to png", "into png", "as png"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file" , "default": "input.png"},
+    "output_file": { "type": "file", "default": "output" }
+  }
+}

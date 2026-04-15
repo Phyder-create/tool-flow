@@ -1,6 +1,6 @@
 {
   "name": "add_background",
-  "keywords": ["background", "watermark background"],
+  "keywords": ["background", "add watermark", "behind text"],
   "file_type": "pdf",
   "parameters": {
     "input_file": {"type": "file", "default" : "input.pdf"},

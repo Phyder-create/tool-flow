@@ -1,6 +1,6 @@
 {
   "name": "multi_stamp",
-  "keywords": ["multi stamp"],
+  "keywords": ["multistamp", "multiple stamps"],
   "file_type": "pdf",
   "parameters": {
     "input_file": {"type": "file","default" : "input.pdf"},

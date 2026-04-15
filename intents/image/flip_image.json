@@ -1,0 +1,9 @@
+{
+  "name": "flip_image",
+  "keywords": ["flip", "vertical mirror", "upside down mirror"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.png" },
+    "output_file": { "type": "file", "default": "flipped.png" }
+  }
+}

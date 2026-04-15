@@ -1,0 +1,9 @@
+{
+  "name": "convert_to_webp",
+  "keywords": ["to webp", "into webp", "as webp"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file" , "default": "input.png"},
+    "output_file": { "type": "file", "default": "output" }
+  }
+}

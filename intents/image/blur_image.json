@@ -1,0 +1,12 @@
+{
+  "name": "blur_image",
+  "keywords": ["blur", "soften", "out of focus"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.png" },
+    "shorthand": { "type": "dimension", "optional": true },
+    "radius": { "type": "number", "optional": true },
+    "sigma": { "type": "number", "optional": true },
+    "output_file": { "type": "file", "default": "blurred.png" }
+  }
+}

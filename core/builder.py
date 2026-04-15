@@ -1,28 +1,49 @@
 import json
 import os
 
-TOOLS_DIR ="tools"
+TOOLS_DIR = "tools"
+
 
 def load_tool_data(tool, domain):
     path = os.path.join(TOOLS_DIR, domain, f"{tool}.json")
 
     if not os.path.exists(path):
-        raise Exception(f"Tool config not found : {tool}")
+        raise Exception(f"Tool config not found: {tool}")
 
     with open(path, "r") as f:
         return json.load(f)
 
-def transform_params(intent_name, params, tool):
-    if tool == "ffmpeg":
-        if params.get("rotation") == "right":
-            params["rotation"] = 1
-        elif params.get("rotation") == "left":
-            params["rotation"] = 2
 
-    return params
+def apply_mappings(params, mappings):
+    if not mappings:
+        return params
+
+    new_params = params.copy()
+
+    for key, mapping_dict in mappings.items():
+        if key in new_params:
+            value = new_params[key]
+
+            if value in mapping_dict:
+                new_params[key] = mapping_dict[value]
+
+    return new_params
 
 
-def build_command(intent_data, params, tool):
+def flatten_params(params):
+    flat = {}
+
+    for k, v in params.items():
+        if isinstance(v, dict):
+            flat.update(v)  # e.g. time → start/end
+        else:
+            flat[k] = v
+
+    return flat
+
+
+
+def build_command(intent_data, ir, tool):
     intent_name = intent_data["name"]
     domain = intent_data["file_type"]
 
@@ -32,13 +53,22 @@ def build_command(intent_data, params, tool):
     if intent_name not in intents:
         raise Exception(f"{tool} does not support {intent_name}")
 
-    params = transform_params(intent_name, params, tool)
+    intent_config = intents[intent_name]
 
-    template = intents[intent_name]["template"]
+    template = intent_config["template"]
+    mappings = intent_config.get("mappings", {})
+
+    params = ir["params"]
+
+    # flatten nested structures
+    flat_params = flatten_params(params)
+
+    # apply mappings from JSON
+    flat_params = apply_mappings(flat_params, mappings)
 
     try:
-        command = template.format(**params)
+        command = template.format(**flat_params)
     except KeyError as e:
-        raise Exception(f"Missing parameter for command : {e}")
-    
+        raise Exception(f"Missing parameter for command: {e}")
+
     return command

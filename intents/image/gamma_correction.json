@@ -1,0 +1,10 @@
+{
+  "name": "gamma_correction",
+  "keywords": ["gamma correct", "adjust gamma", "gamma"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.png" },
+    "gamma": { "type": "number", "default": 1.0 },
+    "output_file": { "type": "file", "default": "gamma.png" }
+  }
+}

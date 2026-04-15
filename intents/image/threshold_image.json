@@ -1,0 +1,10 @@
+{
+  "name": "threshold_image",
+  "keywords": ["threshold", "pure black and white", "binary image", "hard contrast"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.png" },
+    "value": { "type": "number", "default": "50" },
+    "output_file": { "type": "file", "default": "threshold.png" }
+  }
+}

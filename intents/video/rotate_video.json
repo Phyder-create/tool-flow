@@ -1,14 +1,14 @@
 {
   "name": "rotate_video",
-  "keywords": ["rotate video", ".mkv", ".mp4"],
+  "keywords": ["rotate", "turn", "spin", "sideways"],
   "file_type": "video",
   "parameters": {
     "input_file": {"type": "file"},
-    "rotation": {
-      "type": "choice",
-      "choices": ["left", "right"],
-      "default": "right"
-    },
+    "rotation": { 
+          "type": "string", 
+          "choices": ["right", "clockwise", "left", "counterclockwise", "180", "upside down", "halfway"],
+          "default": "right" 
+        },
     "output_file": {"type": "file", "default": "rotated.mp4"}
   }
 }

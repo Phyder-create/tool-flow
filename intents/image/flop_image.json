@@ -1,0 +1,9 @@
+{
+  "name": "flop_image",
+  "keywords": ["flop", "horizontal mirror", "mirror left", "mirror right"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.png" },
+    "output_file": { "type": "file", "default": "flopped.png" }
+  }
+}

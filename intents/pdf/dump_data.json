@@ -1,6 +1,6 @@
 {
   "name": "dump_data",
-  "keywords": ["dump data", "metadata"],
+  "keywords": ["dump data", "extract metadata", "get info"],
   "file_type": "pdf",
   "parameters": {
     "input_file": {"type": "file", "default" : "input.pdf"},

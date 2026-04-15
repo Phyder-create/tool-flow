@@ -1,0 +1,10 @@
+{
+  "name": "sepia_image",
+  "keywords": ["sepia", "old western", "vintage color", "antique"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.png" },
+    "threshold": { "type": "percentage", "default": "80%" },
+    "output_file": { "type": "file", "default": "sepia.png" }
+  }
+}

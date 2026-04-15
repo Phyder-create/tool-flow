@@ -1,215 +1,253 @@
 import re
-
-#extractors
-
-def extract_files(text):
-    return re.findall(r'\b[\w\-.]+\.\w+\b', text)
+from dataclasses import dataclass
+from typing import List, Dict, Any, Optional
+from config.supported_extension import EXT_REGEX
 
 
-def extract_number(text):
-    match = re.search(r'\b\d+(\.\d+)?\b', text)
-    return float(match.group()) if match else None
+@dataclass
+class ExtractedItem:
+    value: Any
+    used: bool = False
+
+class ExtractionContext:
+    def __init__(self, text: str):
+        self.text = text.lower()
+        self.files: List[ExtractedItem] = []
+        self.times: List[ExtractedItem] = []
+        self.numbers: List[ExtractedItem] = []
+        self.output_hint: Optional[str] = None
+        
+        self._scan_text()
+
+    def _scan_text(self):
+        
+        output_hint_pattern = r'(?:to|into|as|output|save as)\s+([a-zA-Z0-9_\-.]+\.[a-zA-Z0-9]{2,5})'        
+        file_pattern = rf'\b[a-zA-Z0-9_\-.]+\.(?:{EXT_REGEX})\b'
+
+        # output Hint
+        out_matches = re.findall(output_hint_pattern, self.text, re.IGNORECASE)
+        if out_matches:
+            self.output_hint = out_matches[-1]
+
+        # files
+        file_matches = re.findall(file_pattern, self.text)
+        for f in file_matches:
+            # avoid grabbing timestamps that the regex might mistake for files
+            if ":" not in f:
+                self.files.append(ExtractedItem(value=f))
+
+        # times
+        self._extract_times()
+        self._extract_numbers()
+
+    def _extract_times(self):
+        # colon Style Pattern (HH:MM:SS or MM:SS)
+        colon_pattern = r'\b\d{1,2}:\d{2}(?::\d{2})?(?:\.\d+)?\b'
+        
+        # verbose Chunk Pattern (Finds blocks like "1h 20m 30s")
+        verbose_chunk_pattern = r'((?:\d+\s*[hms][a-z]*\s*)+)'
+        
+        h_pat = r'(\d+)\s*h'
+        m_pat = r'(\d+)\s*m'
+        s_pat = r'(\d+)\s*s'
+
+        colons = re.findall(colon_pattern, self.text)
+        for t in colons:
+            parts = t.split(':')
+            if len(parts) == 2: 
+                self.times.append(ExtractedItem(f"00:{int(parts[0]):02}:{int(parts[1]):02}"))
+            elif len(parts) == 3: 
+                self.times.append(ExtractedItem(f"{int(parts[0]):02}:{int(parts[1]):02}:{int(parts[2]):02}"))
 
 
-def extract_numbers(text):
-    return [int(x) for x in re.findall(r'\b\d+\b', text)]
+        time_chunks = re.findall(verbose_chunk_pattern, self.text, re.IGNORECASE)
+        for chunk in time_chunks:
+            h = re.search(h_pat, chunk, re.IGNORECASE)
+            m = re.search(m_pat, chunk, re.IGNORECASE)
+            s = re.search(s_pat, chunk, re.IGNORECASE)
+            
+            h_val = int(h.group(1)) if h else 0
+            m_val = int(m.group(1)) if m else 0
+            s_val = int(s.group(1)) if s else 0
+            
+            verbose_time = f"{h_val:02}:{m_val:02}:{s_val:02}"
+            
+            if verbose_time != "00:00:00" and not any(t.value == verbose_time for t in self.times):
+                self.times.append(ExtractedItem(verbose_time))
+
+    def get_unused_file(self) -> Optional[str]:
+        for item in self.files:
+            if not item.used:
+                item.used = True
+                return item.value
+        return None
+
+    def get_unused_time(self) -> Optional[str]:
+        for item in self.times:
+            if not item.used:
+                item.used = True
+                return item.value
+        return None
+
+    def _extract_numbers(self):
+        res_pattern = r'\d+\s*(?:x|by)\s*\d+'
+        time_pattern = r'\d{1,2}:\d{2}(?::\d{2})?'
+        text_clean = re.sub(res_pattern, '', self.text, flags=re.IGNORECASE)
+        text_clean = re.sub(time_pattern, '', text_clean)
+        
+        nums = re.findall(r'\b\d+(?:\.\d+)?\b', text_clean)
+        for n in nums:
+            self.numbers.append(ExtractedItem(value=float(n)))
+
+    def get_unused_number(self) -> Optional[float]:
+        for item in self.numbers:
+            if not item.used:
+                item.used = True
+                return item.value
+        return None
+
+# --- Handlers ----------------------------------------------------------------------------------------------------------
 
 
-def extract_range(text):
-    match = re.search(r'(\d+)\s*(?:to|-)\s*(\d+)', text)
+def handle_file(name: str, config: dict, ctx: ExtractionContext) -> Optional[str]:
+    if name == "output_file":
+
+        if len(ctx.files) == 1:
+            return None
+        # try to use the hint (e.g., "to out.mp4")
+        if ctx.output_hint:
+            for item in ctx.files:
+                if item.value == ctx.output_hint:
+                    item.used = True
+            return ctx.output_hint
+            
+        #grab the last file IF there are multiple unused files
+        unused_files = [item for item in ctx.files if not item.used]
+        if len(unused_files) > 1:  # <--- THIS IS THE FIX
+            last_file = unused_files[-1]
+            last_file.used = True
+            return last_file.value
+            
+        return None 
+
+    
+    return ctx.get_unused_file()
+
+
+def handle_files(name: str, config: dict, ctx: ExtractionContext) -> Optional[str]:
+    collected = []
+    
+    for item in ctx.files:
+        #gab it if it hasn't been used and it isn't the output hint
+        if not item.used:
+            item.used = True
+            collected.append(item.value)
+            
+    #return them joined by a space for the CLI command (e.g., "a.pdf b.pdf")
+    return " ".join(collected) if collected else None
+
+def handle_percentage(name: str, config: dict, ctx: ExtractionContext) -> Optional[str]:
+    pattern = r'(\d+)\s*(?:%|percent(?:age)?)\b'
+    
+    match = re.search(pattern, ctx.text, re.IGNORECASE)
     if match:
-        return f"{match.group(1)}-{match.group(2)}"
-
-    single = re.search(r'\b\d+\b', text)
-    if single:
-        return f"{single.group()}-end"
-
+        return f"{match.group(1)}%"  
     return None
 
-
-def extract_output_file(text):
-    match = re.search(r'(?:to|into|as|output)\s+([\w\-.]+\.\w+)', text)
-    return match.group(1) if match else None
-
-
-def extract_choice(text, choices):
+def handle_string(name: str, config: dict, ctx: ExtractionContext) -> Optional[str]:
+    choices = config.get("choices", [])
     for choice in choices:
-        if choice.lower() in text:
+        pattern = rf'\b{re.escape(choice)}\b'
+        if re.search(pattern, ctx.text, re.IGNORECASE):
             return choice
     return None
 
+def handle_quoted_string(name: str, config: dict, ctx: ExtractionContext) -> Optional[str]:
 
-def extract_resolution(text):
-    match = re.search(r'(\d+)[xX](\d+)', text)
+    pattern = r'(["\'])(.*?)\1'
+    
+    match = re.search(pattern, ctx.text)
     if match:
-        return int(match.group(1)), int(match.group(2))
+        # We return 2 because we want the text, not the quotes around it.
+        return match.group(2)
+        
+    return None
 
-    nums = extract_numbers(text)
-    if len(nums) >= 2:
-        return nums[0], nums[1]
+def handle_time(name: str, config: dict, ctx: ExtractionContext) -> Optional[str]:
+    return ctx.get_unused_time()
 
-    return None, None
+def handle_range(name: str, config: dict, ctx: ExtractionContext) -> Optional[str]:
+    range_pattern = r'(\d+)\s*(?:to|-)\s*(\d+)'
+    single_pattern = r'\bpage\s+(\d+)\b'
 
+    range_match = re.search(range_pattern, ctx.text)
+    if range_match: 
+        return f"{range_match.group(1)}-{range_match.group(2)}"
+    
+    single_match = re.search(single_pattern, ctx.text)
+    if single_match: 
+        return single_match.group(1)
+    
+    return None
 
-#time helpers for ffmpeg and other tools
-
-def format_time(seconds):
-    seconds = int(seconds)
-    return f"{seconds//3600:02}:{(seconds%3600)//60:02}:{seconds%60:02}"
-
-
-def extract_time_range(text):
-    nums = extract_numbers(text)
-    if len(nums) >= 2:
-        return format_time(nums[0]), format_time(nums[1])
-    return None, None
-
-
-#handle files for builder command
-
-def handle_file(name, config, text, context):
-    files = context["files"]
-
-    # output file (prefer "to file.ext")
-    if name == "output_file":
-        out = extract_output_file(text)
-        if out:
-            return out
-
-    # fallback: sequential assignment
-    if context["file_index"] < len(files):
-        file = files[context["file_index"]]
-        context["file_index"] += 1
-
-        if name == "input_file":
-            context["used_input"] = file
-
-        return file
-
+def handle_resolution(name: str, config: dict, ctx: ExtractionContext) -> Optional[int]:
+    pattern = r'(\d+)\s*(?:x|by)\s*(\d+)'
+    
+    match = re.search(pattern, ctx.text, re.IGNORECASE)
+    
+    if match:
+        if name == "width": 
+            return int(match.group(1))
+        if name == "height": 
+            return int(match.group(2))
+            
     return None
 
 
-def handle_files(name, config, text, context):
-    files = context["files"][:]
-    input_file = context.get("used_input")
+def handle_number(name: str, config: dict, ctx: ExtractionContext) -> Optional[float]:
+    return ctx.get_unused_number()
 
-    if input_file in files:
-        files.remove(input_file)
-
-    return " ".join(files) if files else None
-
-
-def handle_range(name, config, text, context):
-    return extract_range(text)
-
-
-def handle_number(name, config, text, context):
-    if "time_range" in context:
-        return None
-    return extract_number(text)
-
-
-def handle_float(name, config, text, context):
-    return extract_number(text)
-
-
-def handle_numbers(name, config, text, context):
-    nums = extract_numbers(text)
-
-    if name == "width" and len(nums) >= 1:
-        return nums[0]
-
-    if name == "height" and len(nums) >= 2:
-        return nums[1]
-
+def handle_dimension(name: str, config: dict, ctx: ExtractionContext) -> Optional[str]:
+    pattern = r'\b(\d+(?:\.\d+)?\s*(?:x|by)\s*\d+(?:\.\d+)?)\b'
+    match = re.search(pattern, ctx.text, re.IGNORECASE)
+    
+    if match:
+        return match.group(1).lower().replace(' by ', 'x').replace(' ', '')
     return None
-
-
-def handle_resolution(name, config, text, context):
-    w, h = extract_resolution(text)
-
-    if name == "width":
-        return w
-    elif name == "height":
-        return h
-
-    return None
-
-
-def handle_time(name, config, text, context):
-    # avoid interpreting ranges like 2-5 as time
-    if "-" in text:
-        return None
-
-    if "time_range" not in context:
-        context["time_range"] = extract_time_range(text)
-
-    start, end = context["time_range"]
-
-    if name == "start":
-        return start
-    elif name == "end":
-        return end
-
-    return None
-
-
-def handle_string(name, config, text, context):
-    return None 
-
-
-def handle_choice(name, config, text, context):
-    choices = config.get("choices", [])
-    return extract_choice(text, choices)
-
-
-
 
 TYPE_HANDLERS = {
     "file": handle_file,
     "files": handle_files,
-    "range": handle_range,
-    "number": handle_number,
-    "float": handle_float,
-    "numbers": handle_numbers,
-    "resolution": handle_resolution,
     "time": handle_time,
+    "range": handle_range,
+    "resolution": handle_resolution,
+    "number": handle_number,
+    "percentage": handle_percentage,
     "string": handle_string,
-    "choice": handle_choice,
+    "quoted_string": handle_quoted_string,
+    "dimension": handle_dimension 
 }
 
-
-
-
-def parse(text, intent_data):
-    text = text.lower()
+def parse(text: str, intent_data: dict) -> dict:
+    ctx = ExtractionContext(text)
     params = {}
-
     param_defs = intent_data.get("parameters", {})
 
-    context = {
-        "files": extract_files(text),
-        "file_index": 0,
-        "used_input": None,
-    }
+    sorted_params = sorted(param_defs.items(), key=lambda x: x[0] != "output_file")
 
-    for name, config in param_defs.items():
+    for name, config in sorted_params:
         ptype = config.get("type")
-
         handler = TYPE_HANDLERS.get(ptype)
-        if not handler:
-            raise Exception(f"Unsupported parameter type: {ptype}")
+        
+        if not handler: continue
 
-        value = handler(name, config, text, context)
+        value = handler(name, config, ctx)
 
         if value is not None:
             params[name] = value
-
-        if name not in params and "default" in config:
+        elif "default" in config:
             params[name] = config["default"]
-
-        
-        if name not in params and not config.get("optional", False):
-            raise Exception(f"Missing parameter: {name}")
+        elif not config.get("optional", False):
+            raise Exception(f"Error: Command requires '{name}' but I couldn't find it in your request.")
 
     return params

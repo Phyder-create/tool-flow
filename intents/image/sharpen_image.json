@@ -1,0 +1,11 @@
+{
+  "name": "sharpen_image",
+  "keywords": ["sharpen", "crisp", "enhance edges"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.png" },
+    "radius": { "type": "number", "default": 2 },
+    "sigma": { "type": "number", "default": 1 },
+    "output_file": { "type": "file", "default": "sharpen.png" }
+  }
+}

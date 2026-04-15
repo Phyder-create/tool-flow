@@ -1,0 +1,12 @@
+{
+  "name": "brightness_contrast",
+  "keywords": ["brightness", "contrast", "adjust contrast", "increase brightness"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file" , "default": "input.png"},
+    "shorthand": { "type": "dimension", "optional": true },
+    "brightness": { "type": "number", "default": 0 },
+    "contrast": { "type": "number", "default": 0 }, 
+    "output_file": { "type": "file", "default": "adjusted.png" }
+  }
+}

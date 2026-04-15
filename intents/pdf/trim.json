@@ -1,6 +1,6 @@
 {
     "name": "trim_pdf",
-    "keywords": ["trim", "cut", "extract"],
+    "keywords": ["trim", "extract pages", "cut pages", "keep pages", "pages","page"],
     "file_type":"pdf",
     "parameters": {
         "input_file": {"type": "file", "default" : "input.pdf"},

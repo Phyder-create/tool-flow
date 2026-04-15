@@ -1,0 +1,9 @@
+{
+  "name": "auto_orient_image",
+  "keywords": ["auto orient", "fix rotation", "fix orientation"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.jpg" },
+    "output_file": { "type": "file", "default": "oriented.jpg" }
+  }
+}

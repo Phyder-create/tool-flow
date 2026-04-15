@@ -1,6 +1,6 @@
 {
   "name": "generate_fdf",
-  "keywords": ["generate fdf"],
+  "keywords": ["generate fdf", "extract form data", "export fields"],
   "file_type": "pdf",
   "parameters": {
     "input_file": {"type": "file", "default" : "input.pdf"},

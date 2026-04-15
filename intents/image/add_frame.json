@@ -1,0 +1,11 @@
+{
+  "name": "add_frame",
+  "keywords": ["frame", "add frame", "picture frame", "put a frame"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.png" },
+    "width": { "type": "number", "default": 10 },
+    "height": { "type": "number", "default": 10 },
+    "output_file": { "type": "file", "default": "framed.png" }
+  }
+}

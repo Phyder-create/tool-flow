@@ -1,0 +1,13 @@
+{
+  "name": "crop_image",
+  "keywords": ["crop", "cut out"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.png" },
+    "width": { "type": "resolution", "default": 300 },
+    "height": { "type": "resolution", "default": 300 },
+    "x": { "type": "number", "default": 0 },
+    "y": { "type": "number", "default": 0 },
+    "output_file": { "type": "file", "default": "cropped.png" }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "edge_detect",
+  "keywords": ["edge detect", "detect edges", "find edges", "outline edges"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.png" },
+    "radius": { "type": "number", "default": 1 },
+    "output_file": { "type": "file", "default": "edges.png" }
+  }
+}

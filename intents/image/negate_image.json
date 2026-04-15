@@ -1,0 +1,9 @@
+{
+  "name": "negate_image",
+  "keywords": ["negate", "invert colors", "inverse"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.png" },
+    "output_file": { "type": "file", "default": "negated.png" }
+  }
+}

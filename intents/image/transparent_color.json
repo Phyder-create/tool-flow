@@ -1,0 +1,14 @@
+{
+  "name": "transparent_color",
+  "keywords": ["transparent", "make transparent", "remove color", "chroma key", "clear background"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.png"},
+    "color": { 
+      "type": "string", 
+      "choices": ["white", "black", "red", "blue", "green", "magenta", "cyan", "yellow"],
+      "default": "white" 
+    },
+    "output_file": { "type": "file", "default": "transparent.png" }
+  }
+}

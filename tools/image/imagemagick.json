@@ -1,0 +1,222 @@
+{
+  "tool": "imagemagick",
+  "intents": {
+
+
+
+    "convert_image": {
+      "template": "magick {input_file} {output_file}"
+    },
+
+    "resize_image": {
+      "template": "magick {input_file} -resize {width}x{height} {output_file}"
+    },
+
+    "scale_image": {
+      "template": "magick {input_file} -scale {width}x{height} {output_file}"
+    },
+
+    "thumbnail_image": {
+      "template": "magick {input_file} -thumbnail {width}x{height} {output_file}"
+    },
+
+    "rotate_image": {
+        "template": "magick {input_file} -rotate {angle} {output_file}",
+        "mappings": {
+            "angle": {
+            "right": "90",
+            "clockwise": "90",
+            "left": "-90",
+            "counterclockwise": "-90",
+            "upside down": "180",
+            "halfway": "180"
+            }
+        }
+    },
+
+    "flip_image": {
+      "template": "magick {input_file} -flip {output_file}"
+    },
+
+    "flop_image": {
+      "template": "magick {input_file} -flop {output_file}"
+    },
+
+    "auto_orient_image": {
+      "template": "magick {input_file} -auto-orient {output_file}"
+    },
+
+
+
+    "crop_image": {
+        "template": "magick {input_file} -gravity center -crop {width}x{height}+{x}+{y} +repage {output_file}"
+        },
+
+    "trim_image": {
+      "template": "magick {input_file} -trim {output_file}"
+    },
+
+    "extent_image": {
+      "template": "magick {input_file} -extent {width}x{height} {output_file}"
+    },
+
+
+
+
+
+    "compress_image": {
+      "template": "magick {input_file} -quality {quality} {output_file}"
+    },
+
+    "strip_metadata": {
+      "template": "magick {input_file} -strip {output_file}"
+    },
+
+
+    "grayscale_image": {
+      "template": "magick {input_file} -colorspace Gray {output_file}"
+    },
+
+    "negate_image": {
+      "template": "magick {input_file} -negate {output_file}"
+    },
+
+    "sepia_image": {
+      "template": "magick {input_file} -sepia-tone {threshold} {output_file}"
+    },
+
+    "normalize_image": {
+      "template": "magick {input_file} -normalize {output_file}"
+    },
+
+    "auto_level_image": {
+      "template": "magick {input_file} -auto-level {output_file}"
+    },
+
+    "brightness_contrast": {
+      "template": "magick {input_file} -brightness-contrast {bc_params} {output_file}"
+    },
+
+    "gamma_correction": {
+      "template": "magick {input_file} -gamma {gamma} {output_file}"
+    },
+
+
+
+
+    "blur_image": {
+      "template": "magick {input_file} -blur {blur_params} {output_file}"
+    },
+
+    "gaussian_blur": {
+      "template": "magick {input_file} -gaussian-blur {radius}x{sigma} {output_file}"
+    },
+
+    "sharpen_image": {
+      "template": "magick {input_file} -sharpen {radius}x{sigma} {output_file}"
+    },
+
+
+
+
+    "add_text_overlay": {
+        "template": "magick {input_file} -gravity {gravity} -pointsize {font_size} -annotate 0 \"{text}\" {output_file}",
+        "mappings": {
+            "gravity": {
+            "top left": "NorthWest",
+            "top": "North",
+            "top right": "NorthEast",
+            "left": "West",
+            "center": "Center",
+            "middle": "Center",
+            "right": "East",
+            "bottom left": "SouthWest",
+            "bottom": "South",
+            "bottom right": "SouthEast"
+            }
+        }
+    },
+
+    "add_border": {
+      "template": "magick {input_file} -bordercolor {color} -border {size} {output_file}"
+    },
+
+    "add_frame": {
+      "template": "magick {input_file} -frame {width}x{height} {output_file}"
+    },
+
+
+
+    "convert_format": {
+      "template": "magick {input_file} {output_file}"
+    },
+
+    "convert_to_png": {
+      "template": "magick {input_file} {output_file}.png"
+    },
+
+    "convert_to_jpg": {
+      "template": "magick {input_file} {output_file}.jpg"
+    },
+
+    "convert_to_webp": {
+      "template": "magick {input_file} {output_file}.webp"
+    },
+
+
+
+
+    "merge_images": {
+      "template": "magick {input_files} +append {output_file}"
+    },
+
+    "stack_images_vertical": {
+      "template": "magick {input_files} -append {output_file}"
+    },
+
+    "create_gif": {
+      "template": "magick -delay {delay} -loop {loop} {input_files} {output_file}"
+    },
+
+
+
+
+  "watermark_image": {
+        "template": "magick {input_file} {watermark_file} -gravity {gravity} -composite {output_file}",
+        "mappings": {
+          "gravity": {
+            "top left": "NorthWest", "top": "North", "top right": "NorthEast",
+            "left": "West", "center": "Center", "middle": "Center", "right": "East",
+            "bottom left": "SouthWest", "bottom": "South", "bottom right": "SouthEast"
+          }
+        }
+      },
+
+    "transparent_color": {
+      "template": "magick {input_file} -transparent {color} {output_file}"
+    },
+
+    "threshold_image": {
+      "template": "magick {input_file} -threshold {value}% {output_file}"
+    },
+
+    "edge_detect": {
+      "template": "magick {input_file} -edge {radius} {output_file}"
+    },
+
+    "emboss_image": {
+      "template": "magick {input_file} -emboss {radius} {output_file}"
+    },
+
+    "mirror_image": {
+      "template": "magick {input_file} -flop {output_file}"
+    },
+
+
+
+    "sketch_image": {
+      "template": "magick {input_file} -sketch {radius} {output_file}"
+    }
+
+  }
+}

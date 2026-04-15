@@ -43,7 +43,7 @@
     },
 
     "extract_frames": {
-      "template": "ffmpeg -i {input_file} {output_pattern}"
+      "template": "ffmpeg -i {input_file} {output_file}"
     },
 
     "create_gif": {
@@ -51,8 +51,18 @@
     },
 
     "rotate_video": {
-      "template": "ffmpeg -i {input_file} -vf \"transpose={rotation}\" {output_file}"
-    }
-
+          "template": "ffmpeg -i {input_file} -vf \"transpose={rotation}\" {output_file}",
+          "mappings": {
+            "rotation": {
+              "left": "2",
+              "counterclockwise": "2",
+              "right": "1",
+              "clockwise": "1",
+              "180": "2,2",
+              "upside down": "2,2",
+              "halfway": "2,2"
+            }
+          }
+        }
   }
 }

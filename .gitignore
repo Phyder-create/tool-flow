@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+
+test_cases.txt
+results.txt
+test_runner.py

@@ -1,6 +1,6 @@
 {
   "name": "split_pdf",
-  "keywords": ["split", "burst pages"],
+  "keywords": ["split", "burst", "separate pages", "extract all pages"],
   "file_type": "pdf",
   "parameters": {
     "input_file": {"type": "file", "default" : "input.pdf"},

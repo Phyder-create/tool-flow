@@ -1,0 +1,11 @@
+{
+  "name": "create_gif",
+  "keywords": ["gif", "animate", "animation", "slideshow"],
+  "file_type": "image",
+  "parameters": {
+    "input_files": { "type": "files",  "default": "a.png b.png"},
+    "delay": { "type": "number", "default": 20 },
+    "loop": { "type": "number", "default": 0 },
+    "output_file": { "type": "file", "default": "animated.gif" }
+  }
+}

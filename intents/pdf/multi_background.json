@@ -1,6 +1,6 @@
 {
   "name": "multi_background",
-  "keywords": ["multi background"],
+  "keywords": ["multibackground", "multiple backgrounds"],
   "file_type": "pdf",
   "parameters": {
     "input_file": {"type": "file","default" : "input.pdf"},

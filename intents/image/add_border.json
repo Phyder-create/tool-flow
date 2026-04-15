@@ -1,0 +1,15 @@
+{
+  "name": "add_border",
+  "keywords": ["border", "add border", "outline", "frame with color"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file" , "default": "input.png"},
+    "color": { 
+      "type": "string", 
+      "choices": ["black", "white", "red", "blue", "green", "yellow", "gray", "transparent"],
+      "default": "black" 
+    },
+    "size": { "type": "number", "default": 10 },
+    "output_file": { "type": "file", "default": "bordered.png" }
+  }
+}

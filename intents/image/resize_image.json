@@ -1,0 +1,11 @@
+{
+  "name": "resize_image",
+  "keywords": ["resize", "scale", "change resolution", "make smaller", "make bigger"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.png" },
+    "width": { "type": "resolution", "default": 800 },
+    "height": { "type": "resolution", "default": 600 },
+    "output_file": { "type": "file", "default": "resized.png" }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "thumbnail_image",
+  "keywords": ["thumbnail", "tiny image", "preview", "small version"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.png" },
+    "width": { "type": "resolution" },
+    "height": { "type": "resolution" },
+    "output_file": { "type": "file", "default": "thumbnail.png" }
+  }
+}

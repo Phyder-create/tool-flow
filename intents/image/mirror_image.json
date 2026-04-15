@@ -1,0 +1,9 @@
+{
+  "name": "mirror_image",
+  "keywords": ["mirror", "reflect", "horizontal flip"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.png" },
+    "output_file": { "type": "file", "default": "mirrored.png" }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "uncompress_pdf",
-  "keywords": ["uncompress", "decompress"],
+  "keywords": ["uncompress", "decompress", "expand"],
   "file_type": "pdf",
   "parameters": {
     "input_file": {"type": "file", "default" : "input.pdf"},

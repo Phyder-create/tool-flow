@@ -1,6 +1,6 @@
 {
   "name": "attach_files",
-  "keywords": ["attach files"],
+  "keywords": ["attach", "embed files", "add attachments"],
   "file_type": "pdf",
   "parameters": {
     "input_file": {"type": "file", "default" : "input.pdf"},

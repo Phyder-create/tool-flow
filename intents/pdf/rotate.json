@@ -1,15 +1,15 @@
 {
   "name": "rotate_pdf",
-  "keywords": ["rotate"],
+  "keywords": ["rotate", "turn pages", "spin"],
   "file_type": "pdf",
   "parameters": {
     "input_file": {"type": "file", "default" : "input.pdf"},
     "range": {"type": "range", "default": "1-end"},
-    "rotation": {
-      "type": "choice",
-      "choices": ["north", "south", "east", "west", "left", "right"],
-      "default": "east"
-    },
+    "rotation": { 
+          "type": "string", 
+          "choices": ["right", "clockwise", "90", "left", "counterclockwise", "-90", "upside down", "180"],
+          "default": "right"
+        },
     "output_file": {"type": "file", "default": "rotated.pdf"}
   }
 }

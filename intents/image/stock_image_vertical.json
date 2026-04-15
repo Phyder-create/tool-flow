@@ -1,0 +1,9 @@
+{
+  "name": "stack_images_vertical",
+  "keywords": ["stack", "vertically", "one on top of another"],
+  "file_type": "image",
+  "parameters": {
+    "input_files": { "type": "files", "default": "input.png" },
+    "output_file": { "type": "file", "default": "stacked.png" }
+  }
+}

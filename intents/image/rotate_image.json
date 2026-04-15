@@ -1,0 +1,14 @@
+{
+  "name": "rotate_image",
+  "keywords": ["rotate", "turn", "spin"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.png" },
+    "angle": { 
+      "type": "string", 
+      "choices": ["right", "clockwise", "left", "counterclockwise", "upside down", "halfway", "90", "-90", "180", "270"],
+      "default": "90" 
+    },
+    "output_file": { "type": "file", "default": "rotated.png" }
+  }
+}

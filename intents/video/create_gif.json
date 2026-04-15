@@ -1,6 +1,6 @@
 {
   "name": "create_gif",
-  "keywords": ["create gif", "video to gif", ".gif",".mp4", ".mkv"],
+  "keywords": ["gif", "make a gif", "convert to gif"],
   "file_type": "video",
   "parameters": {
     "input_file": {"type": "file"},

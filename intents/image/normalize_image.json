@@ -1,0 +1,9 @@
+{
+  "name": "normalize_image",
+  "keywords": ["normalize", "even out"],
+  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.pdf" },
+    "output_file": { "type": "file", "default": "normalized.png" }
+  }
+}

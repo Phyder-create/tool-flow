@@ -1,0 +1,8 @@
+{
+  "name": "grayscale_image",
+  "keywords": ["grayscale", "greyscale", "black and white", "b&w", "desaturate", "convert"],  "file_type": "image",
+  "parameters": {
+    "input_file": { "type": "file", "default": "input.png" },
+    "output_file": { "type": "file", "default": "gray.png" }
+  }
+}

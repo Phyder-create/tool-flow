@@ -1,6 +1,6 @@
 {
   "name": "convert_audio",
-  "keywords": ["convert audio", "change audio format", ".mp3", ".wav"],
+  "keywords": ["convert audio", "change audio format", "to mp3", "to wav"],
   "file_type": "video",
   "parameters": {
     "input_file": {"type": "file"},

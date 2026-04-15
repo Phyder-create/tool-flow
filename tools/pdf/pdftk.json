@@ -15,8 +15,21 @@
     },
 
     "rotate_pdf": {
-      "template": "pdftk {input_file} cat {range}{rotation} output {output_file}"
-    },
+          "template": "pdftk {input_file} cat {range}{rotation} output {output_file}",
+          "mappings": {
+            "rotation": {
+              "right": "E",
+              "clockwise": "E",
+              "90": "E",
+              "left": "W",
+              "counterclockwise": "W",
+              "-90": "W",
+              "upside down": "S",
+              "180": "S",
+              "none": "N"
+            }
+          }
+        },
 
     "split_pdf": {
       "template": "pdftk {input_file} burst output {output_pattern}"

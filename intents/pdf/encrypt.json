@@ -1,6 +1,6 @@
 {
   "name": "encrypt_pdf",
-  "keywords": ["encrypt", "protect pdf"],
+  "keywords": ["encrypt", "lock", "add password", "protect"],
   "file_type": "pdf",
   "parameters": {
     "input_file": {"type": "file", "default" : "input.pdf"},

@@ -1,6 +1,6 @@
 {
   "name": "merge_pdf",
-  "keywords": ["merge", "combine", "join pdf"],
+  "keywords": ["merge", "combine", "join", "together", "stitch"],
   "file_type": "pdf",
   "parameters": {
     "input_files": {"type": "files", "default" : "input.pdf"},
